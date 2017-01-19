@@ -3,10 +3,13 @@ Aplicación distribuida entre cliente-servidor en Java que permite a dos canales
 
 #Enlace de interés:
 Para más información sobre el chat cifrado de extremo a extremo, revisar la siguiente presentación: 
-null
+
+http://www.slideshare.net/DanielGmez3/chat-cifrado-de-extremo-a-extremo
 
 #Desarrolladores:
 Jaime Arévalo Armijos
+
 Daniel Gomez Jaramillo 
+
 María Vélez Castillo
 
