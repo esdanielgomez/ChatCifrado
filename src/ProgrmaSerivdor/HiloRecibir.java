@@ -1,6 +1,7 @@
 package ProgrmaSerivdor;
 
 import Encriptamiento.Cifrado;
+import Encriptamiento.StringEncrypt;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -19,14 +20,18 @@ public class HiloRecibir extends Thread {
         this.cliente = cliente;
         this.ventanaServidor = ventana;
          //Accion que se realiza Salir
-        ventanaServidor.salir.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(mensaje);
-                Cifrado descifrado = new Cifrado();
-                descifrado.addKey("programacion");
-                ventanaServidor.pantallaChat.append(descifrado.desencriptar(mensaje));
-                //System.exit(0); //Sale de la aplicacion
-                ventanaServidor.pantallaChat.append(mensaje);
+        ventanaServidor.desencriptar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {                
+                try {
+                    String key = "92AE31A79FEEB2A3"; //llave
+                    String iv = "0123456789ABCDEF"; // vector de inicialización
+                    System.out.println(mensaje);
+                    ventanaServidor.pantallaChat.append(StringEncrypt.decrypt(key, iv, mensaje) + '\n');
+                    //System.exit(0); //Sale de la aplicacion
+                    //ventanaServidor.pantallaChat.append(mensaje);
+                } catch (Exception ex) {
+                    Logger.getLogger(ProgramaCliente.HiloRecibir.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
        
@@ -34,7 +39,7 @@ public class HiloRecibir extends Thread {
 
     public void mostrarMensaje(final String mensaje) {
          //Accion que se realiza Salir
-        ventanaServidor.salir.addActionListener(new ActionListener() {
+        ventanaServidor.desencriptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Cifrado descifrado = new Cifrado();
                 descifrado.addKey("programacion");
@@ -57,6 +62,7 @@ public class HiloRecibir extends Thread {
         do {
             try {
                 mensaje = (String) entrada.readObject();
+                mensaje = mensaje.substring(mensaje.indexOf(" dice: ") + " dice: ".length(), mensaje.length());
                 ventanaServidor.mostrarMensaje(mensaje);
             } catch (SocketException ex) {
                 ventanaServidor.mostrarMensaje("Conexion Cliente Perdida");

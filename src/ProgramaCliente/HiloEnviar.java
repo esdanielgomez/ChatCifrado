@@ -1,9 +1,12 @@
 package ProgramaCliente;
 
 import Encriptamiento.Cifrado;
+import Encriptamiento.StringEncrypt;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HiloEnviar extends Thread {
 
@@ -21,10 +24,14 @@ public class HiloEnviar extends Thread {
         ventanaCliente.ingresoMensaje.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 mensaje = event.getActionCommand();
-                mensaje = event.getActionCommand();
-                Cifrado cifrado = new Cifrado();
-                cifrado.addKey("programacion");
-                String mensajeCifrado = cifrado.encriptar(mensaje);
+                String key = "92AE31A79FEEB2A3"; //llave
+                String iv = "0123456789ABCDEF"; // vector de inicialización
+                String mensajeCifrado = null;
+                try {
+                    mensajeCifrado = StringEncrypt.encrypt(key, iv, mensaje);
+                } catch (Exception ex) {
+                    Logger.getLogger(HiloEnviar.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 mensaje = mensajeCifrado;
                 enviarMensaje(mensaje); //se envia el mensaje
                 ventanaCliente.ingresoMensaje.setText(""); //el area donde se ingresa el texto se lo borra para poder ingresar el nuevo texto

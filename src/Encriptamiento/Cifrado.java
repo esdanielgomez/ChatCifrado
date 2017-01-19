@@ -7,7 +7,7 @@ package Encriptamiento;
 
 /**
  *
- * @author Daniel
+ * @author Lenovo
  */
 import java.io.IOException;
 import java.security.InvalidKeyException;

@@ -14,7 +14,7 @@ public class PrincipalServidor extends JFrame {
     public JTextField ingresoMensaje;
     public JTextArea pantallaChat;
     public JMenuItem adjuntar;
-    public JMenuItem salir;
+    public JMenuItem desencriptar;
     private static ServerSocket servidor;
     private static Socket cliente;
     private static String ipCliente;// = "10.0.0.4";
@@ -23,7 +23,7 @@ public class PrincipalServidor extends JFrame {
 
     //Creamos la ventana del chat del servidor
     public PrincipalServidor() {
-        super("Chat Kevin Gino");
+        super("Chat");
         //Campo de Texto en la parte inferior
         ingresoMensaje = new JTextField();
         ingresoMensaje.setEditable(false);
@@ -38,12 +38,12 @@ public class PrincipalServidor extends JFrame {
         ingresoMensaje.setForeground(Color.gray);
 
         //Crea opciones de Salir y Adjuntar Archivos
-        salir = new JMenuItem("Descencriptar");
+        desencriptar = new JMenuItem("Descencriptar");
         adjuntar = new JMenuItem("Adjuntar Archivo");
         adjuntar.setEnabled(false);
         JMenuBar barra = new JMenuBar();
         setJMenuBar(barra);
-        barra.add(salir);
+        barra.add(desencriptar);
         barra.add(adjuntar);
 
        
@@ -114,6 +114,6 @@ public class PrincipalServidor extends JFrame {
     public void habilitar(boolean editable) {
         ingresoMensaje.setEditable(editable);
         adjuntar.setEnabled(editable);
-        salir.setEnabled(editable);
+        desencriptar.setEnabled(editable);
     }
 }

@@ -14,7 +14,7 @@ public class PrincipalCliente extends JFrame {
     public JTextField ingresoMensaje;
     public JTextArea pantallaChat;
     public JMenuItem adjuntar;
-    public JMenuItem salir;
+    public JMenuItem desencriptar;
     private static ServerSocket servidor;
     private static Socket cliente;
     private static String ipServidor;// = "127.0.0.1";
@@ -39,12 +39,12 @@ public class PrincipalCliente extends JFrame {
         ingresoMensaje.setForeground(Color.gray);
 
 //Crea opciones de Salir, Adjuntar Archivos y Aceptar Archivos
-        salir = new JMenuItem("Descencriptar");
+        desencriptar = new JMenuItem("Descencriptar");
         adjuntar = new JMenuItem("Adjuntar Archivo");
         adjuntar.setEnabled(false);
         JMenuBar barra = new JMenuBar();
         setJMenuBar(barra);
-        barra.add(salir);
+        barra.add(desencriptar);
         barra.add(adjuntar);
         
 
@@ -103,6 +103,6 @@ public class PrincipalCliente extends JFrame {
     public void habilitar(boolean editable) {
         ingresoMensaje.setEditable(editable);
         adjuntar.setEnabled(editable);
-        salir.setEnabled(editable);
+        desencriptar.setEnabled(editable);
     }
 }
