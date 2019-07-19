@@ -6,7 +6,7 @@ Para más información sobre el chat cifrado de extremo a extremo, revisar la si
 
 http://www.slideshare.net/DanielGmez3/chat-cifrado-de-extremo-a-extremo
 
-## Desarrolladores:
+## Desarrollador:
 
 Daniel Gomez Jaramillo 
 
